@@ -4,12 +4,17 @@
   "description": "",
   "scripts": {
     "dev": "parcel ./index.html",
-    "build": "parcel build ./index.html"
+    "build": "parcel build ./index.html",
+    "vercel": "vercel dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.11.0"
+    "parcel": "^2.11.0",
+    "vercel": "^33.5.1"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
   }
 }
