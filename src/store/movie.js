@@ -5,6 +5,7 @@ const store = new Store({
   page: 1,
   pageMax: 1,
   movies: [],
+  movie: {},
   loading: false,
   message: "Search for the movie title!"
 });
@@ -20,7 +21,7 @@ export const searchMovies = async page => {
   }
 
   try {
-    const res = await fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=159d0449&s=${store.state.searchText}&page=${page}`);
+    const res = await fetch(`https://www.omdbapi.com/?apikey=159d0449&s=${store.state.searchText}&page=${page}`);
     const {Search, totalResults, Response, Error} = await res.json();
     
     if(Response === 'True'){
@@ -38,5 +39,13 @@ export const searchMovies = async page => {
   } finally {
     store.state.loading = false;
   }
+}
 
+export const getMovieDetails = async id => {
+  try {
+    const res = await fetch(`https://omdbapi.com?apikey=159d0449&i=${id}&plot=full`);
+    store.state.movie = await res.json();
+  } catch(error) {
+    console.log("getMovieDetails error : ", error);
+  }
 }
